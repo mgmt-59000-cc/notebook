@@ -3,7 +3,7 @@
 
 title: MGMT 59000 Cloud Computing Notebook
 author: Rob Elliott
-logo: logo.png
+logo: dsb_logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
