@@ -3,7 +3,12 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+parts:
+  - caption: Using Azure Cloud Shell
+    chapters:
+    - file: cloud_shell/getting_started.md
+    - file: cloud_shell/git_setup.md
+    - file: cloud_shell/connect_github.md
+  - caption: Create an Azure Function App
+    chapters:
+    - file: function_app/hello_world_cloud_shell.ipynb
