@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'function_app/5_deploy_function';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Test the Azure function app locally" href="4_test_local_function.html" />
+    <link rel="prev" title="Test the Azure Cloud Function App “Locally”" href="4_test_local_function.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -174,13 +174,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/2_use_azure_cli.html">Use the Azure CLI in Cloud Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/3_git_setup.html">Set up Git on Azure Cloud Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/4_connect_github.html">Optional: Connect Your GitHub.com Account to Azure Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/5_relaunching_cloud_shell.html">Relaunching Cloud Shell</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Create an Azure Function App</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_install_afct.html">Set Up Cloud Shell for Cloud Function Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_create_python_venv.html">Set up Python and a Python virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_create_python_venv.html">Set up Python and a Python Virtual Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_initialize_function.html">Initialize a new Azure Cloud Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_test_local_function.html">Test the Azure function app locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_test_local_function.html">Test the Azure Cloud Function App “Locally”</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Deploy the Azure Function on “The Cloud”</a></li>
 </ul>
 
@@ -369,7 +370,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-settings-for-your-cloud-function">Define the Settings for your Cloud Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-settings-for-your-cloud-function">Define the Settings for your Cloud Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-resource-group">Create a Resource Group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-storage-account">Create a Storage Account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-cloud-function-app">Create the Cloud Function App</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-your-remote-application">Test Your Remote Application</a></li>
 </ul>
             </nav>
@@ -385,30 +391,42 @@
   <section class="tex2jax_ignore mathjax_ignore" id="deploy-the-azure-function-on-the-cloud">
 <h1>Deploy the Azure Function on “The Cloud”<a class="headerlink" href="#deploy-the-azure-function-on-the-cloud" title="Link to this heading">#</a></h1>
 <p>Now it is time to move your Cloud Function code to a Resource on Azure so it will be available on the web.</p>
+<p>Remember the organization of a project on Azure:</p>
+<ul class="simple">
+<li><p>A <strong>Resource Group</strong> is a collection of multiple, related resources</p></li>
+<li><p>A <strong>Cloud Function</strong> <em>is</em> a resource, so it will be inside a Resource Group</p></li>
+<li><p>The code for your Cloud Function is stored on Azure in a <strong>Storage Account</strong></p>
+<ul>
+<li><p>Your Storage Account must be in the same Resource Group as your Cloud Function</p></li>
+</ul>
+</li>
+</ul>
 <section id="define-the-settings-for-your-cloud-function">
 <h2>Define the Settings for your Cloud Function<a class="headerlink" href="#define-the-settings-for-your-cloud-function" title="Link to this heading">#</a></h2>
 <p>Execute the following commands at the Azure Cloud Shell command prompt, one at a time:</p>
+<section id="create-a-resource-group">
+<h3>Create a Resource Group<a class="headerlink" href="#create-a-resource-group" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Create a variable that holds a random identifier</p></li>
+<li><p>Create a variable that contains a resource group name</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>randomIdentifier=$(openssl rand -hex 4)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resourceGroupName</span><span class="o">=</span><span class="s2">&quot;mgmt_59000_func_hello_world&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Create a unique name for the function using the random identifer</p></li>
+<li><p>Use the Azure CLI to create a new resource group with the name you just defined.</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">functionAppName</span><span class="o">=</span><span class="s2">&quot;hello-world-$</span><span class="si">{randomIdentifier}</span><span class="s2">&quot;</span>
-<span class="n">echo</span> <span class="s2">&quot;Function App created with name: $functionAppName&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">az</span> <span class="n">group</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="s2">&quot;$</span><span class="si">{resourceGroupName}</span><span class="s2">&quot;</span> <span class="o">--</span><span class="n">location</span> <span class="n">eastus</span>
 </pre></div>
 </div>
+</section>
+<section id="create-a-storage-account">
+<h3>Create a Storage Account<a class="headerlink" href="#create-a-storage-account" title="Link to this heading">#</a></h3>
 <ol class="arabic simple" start="3">
-<li><p>Create a variable that contains a Resource Group name</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resourceGroup</span><span class="o">=</span><span class="s2">&quot;mgmt_59000_func_hello_world&quot;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Create a variable that contains YOUR Purdue career account username (this will help us make a unique storage account name)</p></li>
+<li><p>Create a variable that contains YOUR Purdue career account username (this will help us make a unique storage account name)</p>
+<ul class="simple">
+<li><p>Only use lower-case letters</p></li>
+</ul>
+</li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">careerAccount</span><span class="o">=</span><span class="s2">&quot;YOURCAREERACCOUNT&quot;</span>
 </pre></div>
@@ -418,20 +436,42 @@
 <p>For example, I would input the following command:
 <code class="docutils literal notranslate"><span class="pre">careerAccount=&quot;elliot62&quot;</span></code></p>
 </div>
-<ol class="arabic simple" start="5">
-<li><p>Create a variable that holds a unique storage account name</p></li>
+<ol class="arabic simple" start="4">
+<li><p>Create a variable that holds a globally unique storage account name</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">storageAccount</span><span class="o">=</span><span class="s2">&quot;hello_world_$</span><span class="si">{careerAccount}</span><span class="s2">_$(date +</span><span class="si">%s</span><span class="s2">)&quot;</span>
-<span class="n">echo</span> <span class="s2">&quot;Your globally unique Storage Account is: $</span><span class="si">{storageAccount}</span><span class="s2">&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">storageAccountName</span><span class="o">=</span><span class="s2">&quot;hw$</span><span class="si">{careerAccount}</span><span class="s2">$(date +</span><span class="si">%s</span><span class="s2">)&quot;</span>
+<span class="n">echo</span> <span class="s2">&quot;Your globally unique Storage Account is: $</span><span class="si">{storageAccountName}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
+<ol class="arabic simple" start="5">
+<li><p>Use the Azure CLI to create a new storage account inside the resource group you just created</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">az</span> <span class="n">storage</span> <span class="n">account</span> <span class="n">create</span> <span class="o">--</span><span class="n">resource</span><span class="o">-</span><span class="n">group</span> <span class="s2">&quot;$</span><span class="si">{resourceGroupName}</span><span class="s2">&quot;</span> <span class="o">--</span><span class="n">name</span> <span class="s2">&quot;$</span><span class="si">{storageAccountName}</span><span class="s2">&quot;</span> <span class="o">--</span><span class="n">location</span> <span class="n">eastus</span> <span class="o">--</span><span class="n">sku</span> <span class="n">Standard_LRS</span> <span class="o">--</span><span class="n">kind</span> <span class="n">StorageV2</span>
+</pre></div>
+</div>
+</section>
+<section id="create-the-cloud-function-app">
+<h3>Create the Cloud Function App<a class="headerlink" href="#create-the-cloud-function-app" title="Link to this heading">#</a></h3>
 <ol class="arabic simple" start="6">
+<li><p>Create a variable that holds a random identifier</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>randomIdentifier=$(openssl rand -hex 4)
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Create a unique name for the function using the random identifer</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">functionAppName</span><span class="o">=</span><span class="s2">&quot;hello-world-$</span><span class="si">{randomIdentifier}</span><span class="s2">&quot;</span>
+<span class="n">echo</span> <span class="s2">&quot;Function App name: $functionAppName&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
 <li><p>Finally, use the following command to create a new Cloud Function using all the settings you defined above.</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>az functionapp create \
-    --resource-group &quot;${resourceGroup}&quot; \
+    --resource-group &quot;${resourceGroupName}&quot; \
     --name &quot;${functionAppName}&quot; \
-    --storage-account ${storageAccount} \
+    --storage-account ${storageAccountName} \
     --runtime python \
     --runtime-version 3.11 \
     --os-type linux \
@@ -439,24 +479,27 @@
     --functions-version 4
 </pre></div>
 </div>
-<p>Once this finishes running, your app will be created on Azure. However, it is not yet publicly available.</p>
-<ol class="arabic simple" start="7">
+<p>Once this finishes running, your app will be created on Azure. However, it is <em>not yet publicly available</em>.</p>
+<ol class="arabic simple" start="9">
 <li><p>Publish the app</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="n">azure</span> <span class="n">functionapp</span> <span class="n">publish</span> <span class="s2">&quot;$</span><span class="si">{functionAppName}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </section>
+</section>
 <section id="test-your-remote-application">
 <h2>Test Your Remote Application<a class="headerlink" href="#test-your-remote-application" title="Link to this heading">#</a></h2>
-<p>After publishing, you should receive a confirmation message that contains a URL. Copy this URL and put it in a new browser tab. You should see the successful deployment message.</p>
-<p>Test the function by viewing a customized response to your custom input.</p>
+<p>After publishing, you should receive a confirmation message that contains a URL.</p>
 <ol class="arabic simple">
-<li><p>Edit the URL and append <code class="docutils literal notranslate"><span class="pre">api/hello_world</span></code> at the end</p></li>
-<li><p>Note the message; your Cloud Function has received and responded to your request</p></li>
+<li><p>Copy this URL and put it in a new browser tab.</p>
+<ul class="simple">
+<li><p>You should see the default Cloud Function message</p></li>
+</ul>
+</li>
 </ol>
-<p>Now we need to add a querystring parameter and argument to pass data into the function.</p>
-<ol class="arabic simple" start="3">
+<p>Test the function by viewing a customized response to your custom input. You need to add a querystring parameter and argument to pass data into the function.</p>
+<ol class="arabic simple" start="2">
 <li><p>Append <code class="docutils literal notranslate"><span class="pre">?name=Fred</span></code> at the end of the URL and see the change in the response in the browser window</p>
 <ul class="simple">
 <li><p>Your app is now accepting input and returning output</p></li>
@@ -502,7 +545,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Test the Azure function app locally</p>
+        <p class="prev-next-title">Test the Azure Cloud Function App “Locally”</p>
       </div>
     </a>
 </div>
@@ -522,7 +565,12 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-settings-for-your-cloud-function">Define the Settings for your Cloud Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-settings-for-your-cloud-function">Define the Settings for your Cloud Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-resource-group">Create a Resource Group</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-storage-account">Create a Storage Account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-cloud-function-app">Create the Cloud Function App</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-your-remote-application">Test Your Remote Application</a></li>
 </ul>
   </nav></div>

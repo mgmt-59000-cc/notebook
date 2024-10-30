@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Set up Python and a Python Virtual Environment" href="2_create_python_venv.html" />
-    <link rel="prev" title="Optional: Connect Your GitHub.com Account to Azure Cloud Shell" href="../cloud_shell/4_connect_github.html" />
+    <link rel="prev" title="Relaunching Cloud Shell" href="../cloud_shell/5_relaunching_cloud_shell.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -175,6 +175,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/2_use_azure_cli.html">Use the Azure CLI in Cloud Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/3_git_setup.html">Set up Git on Azure Cloud Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_shell/4_connect_github.html">Optional: Connect Your GitHub.com Account to Azure Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/5_relaunching_cloud_shell.html">Relaunching Cloud Shell</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Create an Azure Function App</span></p>
 <ul class="current nav bd-sidenav">
@@ -372,7 +373,6 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-scripts-to-help-with-installation">Download Scripts to Help With Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-afct">Install AFCT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-cloud-shell">Returning to Cloud Shell</a></li>
 </ul>
             </nav>
         </div>
@@ -388,7 +388,7 @@
 <h1>Set Up Cloud Shell for Cloud Function Development<a class="headerlink" href="#set-up-cloud-shell-for-cloud-function-development" title="Link to this heading">#</a></h1>
 <p>Although you have the Azure CLI already installed, there is another package that must be installed in order to create and deploy Azure Cloud Functions. This is called <strong>Azure Functions Cloud Tools</strong> or AFCT.</p>
 <section id="download-scripts-to-help-with-installation">
-<h2>Download Scripts to Help With Installation<a class="headerlink" href="#download-scripts-to-help-with-installation" title="Link to this heading">#</a></h2>
+<span id="function-app-install-afct-download-scripts"></span><h2>Download Scripts to Help With Installation<a class="headerlink" href="#download-scripts-to-help-with-installation" title="Link to this heading">#</a></h2>
 <p>I have written a script that will modify your Cloud Shell to provide commands needed for this course.</p>
 <ol class="arabic simple">
 <li><p><strong>MAKE SURE YOU ARE USING THE ‘CLASSIC’ VERSION OF CLOUD SHELL</strong></p>
@@ -399,31 +399,26 @@
 </li>
 </ol>
 <p>Execute the remaining commands on the Cloud Shell command line IN ORDER and wait for each to finish before moving on.</p>
-<ol class="arabic simple" start="2">
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/clouddrive</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/robpurdue/afct</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">afct</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">*.sh</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">./setup_shell.sh</span></code></p></li>
-</ol>
-<p>Once these commands are completed, you can proceed with the installation of Azure Functions Cloud Tools (AFCT).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">clouddrive</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">robpurdue</span><span class="o">/</span><span class="n">afct</span>
+<span class="n">cd</span> <span class="n">afct</span>
+<span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">*.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">setup_shell</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>You can now proceed with the installation of Azure Functions Cloud Tools (AFCT).</p>
 </section>
 <section id="install-afct">
 <h2>Install AFCT<a class="headerlink" href="#install-afct" title="Link to this heading">#</a></h2>
 <p>The terminal should display the new commands for you to use.</p>
 <ol class="arabic simple">
 <li><p>Enter <code class="docutils literal notranslate"><span class="pre">install_afct</span></code> on the command line <em>this will take a few minutes</em></p></li>
+<li><p>Once the software loads, you <strong>MUST</strong> reload your Cloud Shell settings by entering the following command</p></li>
 </ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
 <p>You will be returned to the command prompt. AFCT is now installed.</p>
-</section>
-<section id="returning-to-cloud-shell">
-<h2>Returning to Cloud Shell<a class="headerlink" href="#returning-to-cloud-shell" title="Link to this heading">#</a></h2>
-<p>Once you end your Cloud Shell session, your AFCT installation will be deleted.</p>
-<p>The next time (and every subsequent time) you visit Cloud Shell, you MUST</p>
-<ol class="arabic simple">
-<li><p>Ensure you are using ‘Classic version’ (as described above)</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">install_afct</span></code></p></li>
-</ol>
 </section>
 </section>
 
@@ -458,12 +453,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../cloud_shell/4_connect_github.html"
+       href="../cloud_shell/5_relaunching_cloud_shell.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Optional: Connect Your GitHub.com Account to Azure Cloud Shell</p>
+        <p class="prev-next-title">Relaunching Cloud Shell</p>
       </div>
     </a>
     <a class="right-next"
@@ -494,7 +489,6 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-scripts-to-help-with-installation">Download Scripts to Help With Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-afct">Install AFCT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#returning-to-cloud-shell">Returning to Cloud Shell</a></li>
 </ul>
   </nav></div>
 

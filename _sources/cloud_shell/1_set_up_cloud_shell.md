@@ -37,13 +37,23 @@ The first time you run Cloud Shell you must create cloud storage space for the f
 You are now ready to continue.
 
 # Demo: Creating a File in Cloud Shell
+
+Practice using Linux command line commands to view and create directories and files.
+
 1. `ls` lists files (note `clouddrive` is there)
 2. `cd clouddrive`
 3. `ls` (empty - no files)
 
 ## Create a new directory
-1. `mkdir dummy && cd dummy`
-2. `touch dummy.md`
+
+Create a new directory, make it the working directory, and create a new file named `dummy.md`
+
+```
+mkdir dummy && cd dummy
+touch dummy.md
+```
+
+1. Type `ls` to see the files in the working directory
 
 ## View the file you created in Storage browser
 1. In Azure portal (web), from the hamburger menu choose `Storage accounts`
@@ -54,4 +64,5 @@ You are now ready to continue.
 6. Open the directory you created `dummy`
 7. Note `dummy.md`
 8. In Cloud Shell, `touch dummy2.md`
-9. Refresh the Storage browser; see the new file
+9. Refresh the Storage browser
+    * You should see the new file `dummy2.md` already listed

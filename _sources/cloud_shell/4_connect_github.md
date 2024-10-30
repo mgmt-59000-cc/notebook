@@ -4,7 +4,7 @@ If you are comfortable with Git and already have a GitHub account, you can easil
 
 You will generate an SSH key on your Cloud Shell and add that key to your account on GitHub.com. This will allow you to securely interact with your remote repositories on GitHub.com without the need to enter a username and password.
 
-(acs:create_ssh)=
+(cloud_shell:connect_github:create_ssh)=
 ## Generate an SSH Key
 
 1. In the Azure Cloud Shell, use the built-in utility to create a new, local SSH key. **Make sure you replace the email address with the email address used when creating your GitHub.com account.**
@@ -17,7 +17,7 @@ ssh-keygen -t ed25519 -C "your_email@purdue.edu"
 
 3. You are then prompted to create a passphrase for your keyfile. You may do so, or just press Enter for no passphrase.
 
-(acs:add_ssh_agent)=
+(cloud_shell:connect_github:add_ssh_agent)=
 ## Add SSH Key to the ssh-agent
 
 You'll now store your key in the SSH Agent (the background process that manages all of your SSH keys).
@@ -39,7 +39,7 @@ ssh-add ~/.ssh/id_ed25519
 If you chose a filename other than the default (`id_ed25519`) when you created the key, use the updated filename here.
 ```
 
-(acs:add_ssh_github)=
+(cloud_shell:connect_github:add_ssh_github)=
 ## Add SSH Key to GitHub
 
 You will add the public key file for your SSH key to your GitHub.com account. This will allow your computer to authenticate with GitHub.com when you interact with a remote repository.

@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'cloud_shell/4_connect_github';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Set Up Cloud Shell for Cloud Function Development" href="../function_app/1_install_afct.html" />
+    <link rel="next" title="Relaunching Cloud Shell" href="5_relaunching_cloud_shell.html" />
     <link rel="prev" title="Set up Git on Azure Cloud Shell" href="3_git_setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,13 +175,14 @@
 <li class="toctree-l1"><a class="reference internal" href="2_use_azure_cli.html">Use the Azure CLI in Cloud Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_git_setup.html">Set up Git on Azure Cloud Shell</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Optional: Connect Your GitHub.com Account to Azure Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_relaunching_cloud_shell.html">Relaunching Cloud Shell</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Create an Azure Function App</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../function_app/1_install_afct.html">Set Up Cloud Shell for Cloud Function Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function_app/2_create_python_venv.html">Set up Python and a Python virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/2_create_python_venv.html">Set up Python and a Python Virtual Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../function_app/3_initialize_function.html">Initialize a new Azure Cloud Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function_app/4_test_local_function.html">Test the Azure function app locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/4_test_local_function.html">Test the Azure Cloud Function App “Locally”</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../function_app/5_deploy_function.html">Deploy the Azure Function on “The Cloud”</a></li>
 </ul>
 
@@ -389,7 +390,7 @@
 <p>If you are comfortable with Git and already have a GitHub account, you can easily connect your Cloud Shell VM to GitHub so that you can create and push to your repositories. <strong>This is optional and not required for this course.</strong></p>
 <p>You will generate an SSH key on your Cloud Shell and add that key to your account on <a class="reference external" href="http://GitHub.com">GitHub.com</a>. This will allow you to securely interact with your remote repositories on <a class="reference external" href="http://GitHub.com">GitHub.com</a> without the need to enter a username and password.</p>
 <section id="generate-an-ssh-key">
-<span id="acs-create-ssh"></span><h2>Generate an SSH Key<a class="headerlink" href="#generate-an-ssh-key" title="Link to this heading">#</a></h2>
+<span id="cloud-shell-connect-github-create-ssh"></span><h2>Generate an SSH Key<a class="headerlink" href="#generate-an-ssh-key" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>In the Azure Cloud Shell, use the built-in utility to create a new, local SSH key. <strong>Make sure you replace the email address with the email address used when creating your <a class="reference external" href="http://GitHub.com">GitHub.com</a> account.</strong></p></li>
 </ol>
@@ -402,7 +403,7 @@
 </ol>
 </section>
 <section id="add-ssh-key-to-the-ssh-agent">
-<span id="acs-add-ssh-agent"></span><h2>Add SSH Key to the ssh-agent<a class="headerlink" href="#add-ssh-key-to-the-ssh-agent" title="Link to this heading">#</a></h2>
+<span id="cloud-shell-connect-github-add-ssh-agent"></span><h2>Add SSH Key to the ssh-agent<a class="headerlink" href="#add-ssh-key-to-the-ssh-agent" title="Link to this heading">#</a></h2>
 <p>You’ll now store your key in the SSH Agent (the background process that manages all of your SSH keys).</p>
 <ol class="arabic simple">
 <li><p>At the Cloud Shell command prompt, enter the following:</p></li>
@@ -423,7 +424,7 @@
 </div>
 </section>
 <section id="add-ssh-key-to-github">
-<span id="acs-add-ssh-github"></span><h2>Add SSH Key to GitHub<a class="headerlink" href="#add-ssh-key-to-github" title="Link to this heading">#</a></h2>
+<span id="cloud-shell-connect-github-add-ssh-github"></span><h2>Add SSH Key to GitHub<a class="headerlink" href="#add-ssh-key-to-github" title="Link to this heading">#</a></h2>
 <p>You will add the public key file for your SSH key to your <a class="reference external" href="http://GitHub.com">GitHub.com</a> account. This will allow your computer to authenticate with <a class="reference external" href="http://GitHub.com">GitHub.com</a> when you interact with a remote repository.</p>
 <ol class="arabic simple">
 <li><p>In Azure Cloud Shell, use the following command to display the contents of your public key on the screen:</p></li>
@@ -493,11 +494,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="../function_app/1_install_afct.html"
+       href="5_relaunching_cloud_shell.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Set Up Cloud Shell for Cloud Function Development</p>
+        <p class="prev-next-title">Relaunching Cloud Shell</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
