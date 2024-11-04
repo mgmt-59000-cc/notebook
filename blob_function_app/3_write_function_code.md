@@ -38,7 +38,7 @@ In `function_app.py` note that the **path** is set to `inbox`. Your function wil
 The container will be in your "input" Storage Account that you created earlier. We must create a connection between the storage account and your function.
 
 ## Connect Your App to Your Storage
-Even though
+Even though your resources are within the same resource group, you must still make explicit connections between them. To do so, you will store the **connection strings** for your storage accounts in the **environment variables** for your function app.
 
 ### Get the Connection String for the Storage Account that our function app will "watch" for new files
 
@@ -165,3 +165,8 @@ az role assignment create \
     --role "Storage Blob Data Contributor" \
     --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$inputStorageAccountName"
 ```
+
+## Review
+The **connection strings** you added to the account help the function app find the files stored in the storage account.
+
+The **managed identity** is then given the **roles** needed to view and contribute to (copy, delete, etc.) the files in those storage accounts.
