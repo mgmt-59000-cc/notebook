@@ -398,6 +398,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-function-on-azure">Publish the function on Azure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-connection-string-to-function-on-azure">Add Connection String to Function on Azure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-permissions-between-your-app-and-the-storage-account">Set Up Permissions Between Your App and the Storage Account</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review">Review</a></li>
 </ul>
             </nav>
         </div>
@@ -449,7 +450,7 @@
 </section>
 <section id="connect-your-app-to-your-storage">
 <h2>Connect Your App to Your Storage<a class="headerlink" href="#connect-your-app-to-your-storage" title="Link to this heading">#</a></h2>
-<p>Even though</p>
+<p>Even though your resources are within the same resource group, you must still make explicit connections between them. To do so, you will store the <strong>connection strings</strong> for your storage accounts in the <strong>environment variables</strong> for your function app.</p>
 <section id="get-the-connection-string-for-the-storage-account-that-our-function-app-will-watch-for-new-files">
 <h3>Get the Connection String for the Storage Account that our function app will “watch” for new files<a class="headerlink" href="#get-the-connection-string-for-the-storage-account-that-our-function-app-will-watch-for-new-files" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -581,6 +582,11 @@
 </pre></div>
 </div>
 </section>
+<section id="review">
+<h2>Review<a class="headerlink" href="#review" title="Link to this heading">#</a></h2>
+<p>The <strong>connection strings</strong> you added to the account help the function app find the files stored in the storage account.</p>
+<p>The <strong>managed identity</strong> is then given the <strong>roles</strong> needed to view and contribute to (copy, delete, etc.) the files in those storage accounts.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -666,6 +672,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-function-on-azure">Publish the function on Azure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-connection-string-to-function-on-azure">Add Connection String to Function on Azure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-permissions-between-your-app-and-the-storage-account">Set Up Permissions Between Your App and the Storage Account</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review">Review</a></li>
 </ul>
   </nav></div>
 
