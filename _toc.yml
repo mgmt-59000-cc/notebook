@@ -6,9 +6,23 @@ root: intro
 parts:
   - caption: Using Azure Cloud Shell
     chapters:
-    - file: cloud_shell/getting_started.md
-    - file: cloud_shell/git_setup.md
-    - file: cloud_shell/connect_github.md
-  - caption: Create an Azure Function App
+    - file: cloud_shell/1_set_up_cloud_shell.md
+    - file: cloud_shell/2_use_azure_cli.md
+    - file: cloud_shell/3_git_setup.md
+    - file: cloud_shell/4_connect_github.md
+    - file: cloud_shell/5_relaunching_cloud_shell.md
+  - caption: Create an Azure HTTP-Triggered Function App
     chapters:
-    - file: function_app/hello_world_cloud_shell.ipynb
+    - file: function_app/1_install_afct.md
+    - file: function_app/2_create_python_venv.md
+    - file: function_app/3_initialize_function.md
+    - file: function_app/4_test_local_function.md
+    - file: function_app/5_deploy_function.md
+  - caption: Create an Azure Blob Storage Function App
+    chapters:
+    - file: blob_function_app/1_overview.md
+    - file: blob_function_app/2_create_function_resources.md
+    - file: blob_function_app/3_write_function_code.md
+    - file: blob_function_app/4_modify_function.md
+    - file: blob_function_app/5_copy_files.md
+    - file: blob_function_app/6_returning_to_cloud_shell.md

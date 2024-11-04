@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modify the Function to Copy Files &#8212; MGMT 59000 Cloud Computing Notebook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blob_function_app/4_modify_function';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Moving Files from One Container to Another" href="5_copy_files.html" />
+    <link rel="prev" title="Write the Function Code" href="3_write_function_code.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dsb_logo.png" class="logo__image only-light" alt="MGMT 59000 Cloud Computing Notebook - Home"/>
+    <img src="../_static/dsb_logo.png" class="logo__image only-dark pst-js-only" alt="MGMT 59000 Cloud Computing Notebook - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    MGMT 59000 Cloud Computing Notebook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Using Azure Cloud Shell</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/1_set_up_cloud_shell.html">Set Up Cloud Shell</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/2_use_azure_cli.html">Use the Azure CLI in Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/3_git_setup.html">Set up Git on Azure Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/4_connect_github.html">Optional: Connect Your GitHub.com Account to Azure Cloud Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_shell/5_relaunching_cloud_shell.html">Relaunching Cloud Shell</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Create an Azure HTTP-Triggered Function App</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../function_app/1_install_afct.html">Set Up Cloud Shell for Cloud Function Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/2_create_python_venv.html">Set up Python and a Python Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/3_initialize_function.html">Initialize a new Azure Cloud Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/4_test_local_function.html">Test the Azure Cloud Function App “Locally”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_app/5_deploy_function.html">Deploy the Azure Function on “The Cloud”</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Create an Azure Blob Storage Function App</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_overview.html">Blob Storage Function App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_create_function_resources.html">Create Function Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_write_function_code.html">Write the Function Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modify the Function to Copy Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_copy_files.html">Moving Files from One Container to Another</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_returning_to_cloud_shell.html">Continuing Work on Your Function</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fblob_function_app/4_modify_function.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/blob_function_app/4_modify_function.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modify the Function to Copy Files</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-package">Install Python package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-python-code">Add Python Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-your-function-s-changes">Publish Your Function’s Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sample-order-file">Create Sample Order File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-order-file-s">Upload Sample Order File(s)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-multiple-orders">Test With Multiple Orders</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modify-the-function-to-copy-files">
+<h1>Modify the Function to Copy Files<a class="headerlink" href="#modify-the-function-to-copy-files" title="Link to this heading">#</a></h1>
+<p>You’ll now update the function’s source code so that it has the ability to move files from the <code class="docutils literal notranslate"><span class="pre">inbox</span></code> to one of the other containers you’ve created.</p>
+<section id="install-python-package">
+<h2>Install Python package<a class="headerlink" href="#install-python-package" title="Link to this heading">#</a></h2>
+<p>We’ll need to install another support package from Python to allow us to move files within our storage account.</p>
+<p>On the command line, install the package with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">azure</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">blob</span>
+</pre></div>
+</div>
+<p>Update the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> to include a reference to the Python package. Add the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">azure</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">blob</span>
+</pre></div>
+</div>
+<p>Ensure your <code class="docutils literal notranslate"><span class="pre">function_app.py</span></code> file also imports the package. At the top of the file, include the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">azure.storage.blob</span> <span class="kn">import</span> <span class="n">BlobServiceClient</span><span class="p">,</span> <span class="n">BlobClient</span><span class="p">,</span> <span class="n">ContainerClient</span>
+</pre></div>
+</div>
+<p>You will also need some additional built-in Python packages, so also add the following lines to the top of your <code class="docutils literal notranslate"><span class="pre">function_app.py</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</section>
+<section id="add-python-code">
+<h2>Add Python Code<a class="headerlink" href="#add-python-code" title="Link to this heading">#</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">function_app.py</span></code> file, <strong>delete</strong> or <strong>comment out</strong> the contents of the file <strong>after</strong> the line that begins <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">process_order...</span></code></p>
+<p>Replace the contents of the file with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing blob: </span><span class="si">{</span><span class="n">myblob</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, Size: </span><span class="si">{</span><span class="n">myblob</span><span class="o">.</span><span class="n">length</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Read the CSV file from the InputStream</span>
+    <span class="n">csv_content</span> <span class="o">=</span> <span class="n">myblob</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">csv_content</span><span class="p">))</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span> <span class="c1"># Store the values of the CSV rows in a variable called &quot;rows&quot;</span>
+    <span class="n">first_row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span> <span class="c1"># Get the value of the first data row (skipping the header row)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First row: </span><span class="si">{</span><span class="n">first_row</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="publish-your-function-s-changes">
+<h2>Publish Your Function’s Changes<a class="headerlink" href="#publish-your-function-s-changes" title="Link to this heading">#</a></h2>
+<p>Move the new code for your function to Azure with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="n">azure</span> <span class="n">functionapp</span> <span class="n">publish</span> <span class="s2">&quot;$</span><span class="si">{functionAppName}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="create-sample-order-file">
+<h2>Create Sample Order File<a class="headerlink" href="#create-sample-order-file" title="Link to this heading">#</a></h2>
+<p>I’ve written a Python program for you that will generate some fake order files. Generate a single order file with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">generate_orders</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>You can view the file that was created with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">sample_orders</span>
+</pre></div>
+</div>
+</section>
+<section id="upload-sample-order-file-s">
+<h2>Upload Sample Order File(s)<a class="headerlink" href="#upload-sample-order-file-s" title="Link to this heading">#</a></h2>
+<p>Azure CLI has a built-in command that will upload multiple files into a Storage Account container. You’ll use it to upload your auto-generated sample orders into your <code class="docutils literal notranslate"><span class="pre">inbox</span></code> container we previously created.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">az</span> <span class="n">storage</span> <span class="n">blob</span> <span class="n">upload</span><span class="o">-</span><span class="n">batch</span> <span class="o">--</span><span class="n">account</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;$</span><span class="si">{inputStorageAccountName}</span><span class="s2">&quot;</span> <span class="o">--</span><span class="n">destination</span> <span class="n">inbox</span> <span class="o">--</span><span class="n">source</span> <span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">sample_orders</span> <span class="o">--</span><span class="n">auth</span><span class="o">-</span><span class="n">mode</span> <span class="n">key</span>
+</pre></div>
+</div>
+</section>
+<section id="test-with-multiple-orders">
+<h2>Test With Multiple Orders<a class="headerlink" href="#test-with-multiple-orders" title="Link to this heading">#</a></h2>
+<p>Your function will now run one time for each file uploaded to your <code class="docutils literal notranslate"><span class="pre">inbox</span></code> container. Let’s test this by uploading more than one file.</p>
+<p>First, clean out all existing files from the containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">cleanup_containers</span><span class="o">.</span><span class="n">sh</span> <span class="s2">&quot;$</span><span class="si">{inputStorageAccountName}</span><span class="s2">&quot;</span> <span class="s2">&quot;$</span><span class="si">{resourceGroupName}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Then generate 10 new order files using the Python script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">generate_orders</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">n</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Upload all the orders as a single batch to the <code class="docutils literal notranslate"><span class="pre">inbox</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">az</span> <span class="n">storage</span> <span class="n">blob</span> <span class="n">upload</span><span class="o">-</span><span class="n">batch</span> <span class="o">--</span><span class="n">account</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;$</span><span class="si">{inputStorageAccountName}</span><span class="s2">&quot;</span> <span class="o">--</span><span class="n">destination</span> <span class="n">inbox</span> <span class="o">--</span><span class="n">source</span> <span class="o">~/</span><span class="n">clouddrive</span><span class="o">/</span><span class="n">blob_storage</span><span class="o">/</span><span class="n">bs_support</span><span class="o">/</span><span class="n">sample_orders</span> <span class="o">--</span><span class="n">auth</span><span class="o">-</span><span class="n">mode</span> <span class="n">key</span>
+</pre></div>
+</div>
+<p>You can now see that your files are uploading and each one triggers the logic of the function.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./blob_function_app"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_write_function_code.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Write the Function Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5_copy_files.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Moving Files from One Container to Another</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-package">Install Python package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-python-code">Add Python Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-your-function-s-changes">Publish Your Function’s Changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sample-order-file">Create Sample Order File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-order-file-s">Upload Sample Order File(s)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-with-multiple-orders">Test With Multiple Orders</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rob Elliott
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
