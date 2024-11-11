@@ -26,3 +26,15 @@ parts:
     - file: blob_function_app/4_modify_function.md
     - file: blob_function_app/5_copy_files.md
     - file: blob_function_app/6_returning_to_cloud_shell.md
+  - caption: Create a Data Factory Pipeline
+    chapters:
+    - file: data_pipeline/1_overview.md
+    - file: data_pipeline/2_create_resource_group.md
+    - file: data_pipeline/3_create_database.md
+    - file: data_pipeline/4_create_blob_storage.md
+    - file: data_pipeline/5_create_db_table.md
+    - file: data_pipeline/6_create_data_factory.md
+    - file: data_pipeline/7_create_pipeline.md
+    - file: data_pipeline/8_test_pipeline.md
+    - file: data_pipeline/9_create_trigger.md
+    - file: data_pipeline/10_update_pipeline.md
