@@ -2,6 +2,7 @@
 Your database should be deployed. Use it to create a database table that will hold the data processed by your pipeline.
 
 1. From the Home page, click your **data_sink** database
+    * If your database does not appear, click **All service** > **SQL databases** > `data_sink`
 2. Click **Query editor (preview)**
 3. Log in with the credentials you created in a previous step
 4. Copy the query below to create an `orders` table in your database
