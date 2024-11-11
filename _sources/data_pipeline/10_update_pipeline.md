@@ -21,10 +21,12 @@ TRUNCATE TABLE dbo.orders;
 1. Click on the Delete tile
 2. Click the **Source** tab in the Settings panel
 3. For 'Dataset', choose `DelimitedText1`
-4. Under 'Dataset properties', find the 'filePath' parameter. For 'Value', enter `@pipeline().parameters.filePath`
-5. UNCHECK the checkbox next to 'Recursively'
-6. Click the **Logging settings** tab
-7. Uncheck 'Enable logging'
+4. Under 'Dataset properties', find the 'filePath' parameter. Click the text box for the 'Value' field
+5. On the Pipeline expression builder panel, click the 'Parameters' tab
+6. Click `filePath` and click **OK**
+7. UNCHECK the checkbox next to 'Recursively'
+8. Click the **Logging settings** tab
+9. Uncheck 'Enable logging'
 
 ## Publish Your Pipeline
 1. From the top of Data Factory Studio, click **Publish all...**
