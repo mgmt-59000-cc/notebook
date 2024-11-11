@@ -30,17 +30,20 @@ You **MUST** use Microsoft Edge or Google Chrome for this part of this tutorial!
 ## Configure the Data Source Linked Service
 1. From the 'Set properties' panel, click the **Browse** (📁) button
 2. Click `inbox`
-3. For 'File name' enter `@dataset().filePath`
-4. Click **OK**
-5. Expand the 'Advanced' option and click **Open this dataset**
-6. Choose the 'Parameters' tab in the dataset settings
-7. Click **+ New**
-8. For 'Name' enter `filePath`
-9. For 'Default value' enter `@dataset().filePath`
-10. Return to the **pipeline1** tab in the pipeline editor
-11. Still in the 'Source' tab of the settings panel, note the parameter **filePath** appears
-12. For 'Value', enter `@pipeline().parameters.filePath`
-13. Uncheck the checkbox for 'Recursively'
+3. Expand the 'Advanced' option and click **Open this dataset**
+4. Choose the 'Parameters' tab in the dataset settings
+5. Click **+ New**
+6. For 'Name' enter `filePath`
+7. Return to the **Connection** tab and click on the text box for **File name**
+8. Click **Add dynamic content**
+9. In the 'Pipeline expression builder' panel, click `filePath` under the 'Parameters' tab
+10. Click **OK** to return to the dataset properties
+11. Return to the **pipeline1** tab in the pipeline editor
+12. Still in the 'Source' tab of the settings panel, note the parameter **filePath** appears
+13. Click on the text box for **Value** of the  `filePath` parameter
+14. In the 'Pipeline expression builder' panel, click `filePath` under the 'Parameters' tab
+15. Click **OK** to return to the pipeline properties
+16. Uncheck the checkbox for 'Recursively'
 
 ## Configure the Sink for the Pipeline
 1. Click the **Sink** tab in the pipeline settings panel

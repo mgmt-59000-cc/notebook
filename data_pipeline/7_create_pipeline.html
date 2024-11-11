@@ -451,16 +451,19 @@
 <ol class="arabic simple">
 <li><p>From the ‘Set properties’ panel, click the <strong>Browse</strong> (📁) button</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">inbox</span></code></p></li>
-<li><p>For ‘File name’ enter <code class="docutils literal notranslate"><span class="pre">&#64;dataset().filePath</span></code></p></li>
-<li><p>Click <strong>OK</strong></p></li>
 <li><p>Expand the ‘Advanced’ option and click <strong>Open this dataset</strong></p></li>
 <li><p>Choose the ‘Parameters’ tab in the dataset settings</p></li>
 <li><p>Click <strong>+ New</strong></p></li>
 <li><p>For ‘Name’ enter <code class="docutils literal notranslate"><span class="pre">filePath</span></code></p></li>
-<li><p>For ‘Default value’ enter <code class="docutils literal notranslate"><span class="pre">&#64;dataset().filePath</span></code></p></li>
+<li><p>Return to the <strong>Connection</strong> tab and click on the text box for <strong>File name</strong></p></li>
+<li><p>Click <strong>Add dynamic content</strong></p></li>
+<li><p>In the ‘Pipeline expression builder’ panel, click <code class="docutils literal notranslate"><span class="pre">filePath</span></code> under the ‘Parameters’ tab</p></li>
+<li><p>Click <strong>OK</strong> to return to the dataset properties</p></li>
 <li><p>Return to the <strong>pipeline1</strong> tab in the pipeline editor</p></li>
 <li><p>Still in the ‘Source’ tab of the settings panel, note the parameter <strong>filePath</strong> appears</p></li>
-<li><p>For ‘Value’, enter <code class="docutils literal notranslate"><span class="pre">&#64;pipeline().parameters.filePath</span></code></p></li>
+<li><p>Click on the text box for <strong>Value</strong> of the  <code class="docutils literal notranslate"><span class="pre">filePath</span></code> parameter</p></li>
+<li><p>In the ‘Pipeline expression builder’ panel, click <code class="docutils literal notranslate"><span class="pre">filePath</span></code> under the ‘Parameters’ tab</p></li>
+<li><p>Click <strong>OK</strong> to return to the pipeline properties</p></li>
 <li><p>Uncheck the checkbox for ‘Recursively’</p></li>
 </ol>
 </section>

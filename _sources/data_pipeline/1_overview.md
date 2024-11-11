@@ -8,7 +8,7 @@ You **MUST** use Microsoft Edge or Google Chrome for part of this tutorial. Cert
 ```
 
 ## Register EventGrid
-Enable the EventGrid on you Azure subscription.
+Enable the EventGrid on your Azure subscription.
 1. Go to **Home** > **Subscriptions**
 2. Under **Settings** > **Resource providers** search for **Microsoft.EventGrid**
 3. Check the box next to **Microsoft.EventGrid** and click **Register**

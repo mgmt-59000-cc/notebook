@@ -25,8 +25,8 @@ You will likely see a purple box that asks if you want to try SQL Database for f
     * Click **OK**
 
 6. Back on the **Basics** tab, do the following:
-    * For 'Want to use SQL elastic pool?' choose **No**
-    * For 'Workload environment' choose **Development**
+    * (If this question appearst) For 'Want to use SQL elastic pool?' choose **No**
+    * (If this option appearst) For 'Workload environment' choose **Development**
     * Click the **Next: Networking >** button
 
 7. On the **Networking** tab, do the following:
