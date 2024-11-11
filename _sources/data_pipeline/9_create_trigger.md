@@ -12,8 +12,12 @@ You will now set your pipeline to trigger whenever new files are added to your B
 9. For 'Event', choose **Blob created**
 10. Click **Continue**
 11. On the Data preview panel, click **Continue**
-12. On the New trigger panel, click **OK**
-13. From Data Factory Studio, click **Publish all** at the top to make the changes to your pipeline, then click **Publish**
+12. On the 'Trigger Run Parameters' panel, for Value, enter the following:
+```
+@triggerBody().fileName
+```
+13. On the New trigger panel, click **OK**
+14. From Data Factory Studio, click **Publish all** at the top to make the changes to your pipeline, then click **Publish**
 
 ## Test Your Trigger
 1. Return to the Azure Portal and upload ANY SINGLE CSV file to your Storage Account container as you did before
